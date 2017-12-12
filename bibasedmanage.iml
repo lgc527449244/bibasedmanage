@@ -59,5 +59,7 @@
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.4" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.9" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:druid:0.2.26" level="project" />
+    <orderEntry type="library" name="Maven: com.github.miemiedev:mybatis-paginator:1.2.15" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.2" level="project" />
   </component>
 </module>
