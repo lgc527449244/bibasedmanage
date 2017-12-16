@@ -1,6 +1,1 @@
-2017-12-11 23:50:07.286 [main] TRACE mylog - trace level
-2017-12-11 23:50:07.286 [main] DEBUG mylog - debug level
-2017-12-11 23:50:07.286 [main] INFO  mylog - info level
-2017-12-11 23:50:07.286 [main] WARN  mylog - warn level
-2017-12-11 23:50:07.286 [main] ERROR mylog - error level
-2017-12-11 23:50:07.286 [main] FATAL mylog - fatal level
+2017-12-14 09:06:06.206 [main] INFO  mylog - {"password":"root","roleId":1,"userId":1,"username":"admin"}

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<toolbox>
+	<!-- application start -->
+	<!--<tool>-->
+		<!--<key>shiro</key>-->
+		<!--<scope>application</scope>-->
+		<!--<class>org.apache.shiro.web.support.velocity.Permission</class>-->
+	<!--</tool>-->
+	<tool>
+		<key>cookie</key>
+		<scope>request</scope>
+		<class>org.apache.velocity.tools.view.CookieTool</class>
+	</tool>
+	<tool>
+		<key>math</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.MathTool</class>
+	</tool>
+</toolbox>

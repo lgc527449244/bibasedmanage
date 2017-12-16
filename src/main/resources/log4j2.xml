@@ -21,9 +21,13 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="mylog" level="trace" additivity="false">
-            <AppenderRef ref="MyFile" />
-        </Logger>
+        <!--<Logger name="mylog" level="trace" additivity="false">-->
+            <!--<AppenderRef ref="MyFile" />-->
+            <!--<AppenderRef ref="Console" />-->
+        <!--</Logger>-->
+        <logger name="org.springframework" level="INFO"></logger>
+        <logger name="org.mybatis" level="INFO"></logger>
+        <logger name="com.jmu.bibasedmanage" level="DEBUG"/>
         <Root level="error">
             <AppenderRef ref="Console" />
         </Root>
