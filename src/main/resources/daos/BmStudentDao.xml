@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jmu.bibasedmanage.dao.BmStudentDao">
+  <resultMap id="BaseResultMap" type="com.jmu.bibasedmanage.pojo.BmStudent">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="topic_id" jdbcType="VARCHAR" property="topicId" />
+    <result column="teacher_group_id" jdbcType="VARCHAR" property="teacherGroupId" />
+    <result column="student_id" jdbcType="VARCHAR" property="studentId" />
+    <result column="grade" jdbcType="INTEGER" property="grade" />
+    <result column="college" jdbcType="VARCHAR" property="college" />
+    <result column="major" jdbcType="VARCHAR" property="major" />
+    <result column="classes" jdbcType="VARCHAR" property="classes" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="answer_evaluate" jdbcType="VARCHAR" property="answerEvaluate" />
+    <result column="answer_score" jdbcType="INTEGER" property="answerScore" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="record_status" jdbcType="VARCHAR" property="recordStatus" />
+    <result column="comment_teacher" jdbcType="VARCHAR" property="commentTeacher" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, topic_id, teacher_group_id, student_id, grade, college, major, classes, name, 
+    sex, email, answer_evaluate, answer_score, status, create_time, update_time, record_status, 
+    comment_teacher
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bm_student
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bm_student
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jmu.bibasedmanage.pojo.BmStudent">
+    insert into bm_student (id, topic_id, teacher_group_id, 
+      student_id, grade, college, 
+      major, classes, name, 
+      sex, email, answer_evaluate, 
+      answer_score, status, create_time, 
+      update_time, record_status, comment_teacher
+      )
+    values (#{id,jdbcType=VARCHAR}, #{topicId,jdbcType=VARCHAR}, #{teacherGroupId,jdbcType=VARCHAR}, 
+      #{studentId,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}, #{college,jdbcType=VARCHAR}, 
+      #{major,jdbcType=VARCHAR}, #{classes,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{answerEvaluate,jdbcType=VARCHAR}, 
+      #{answerScore,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{recordStatus,jdbcType=VARCHAR}, #{commentTeacher,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmu.bibasedmanage.pojo.BmStudent">
+    insert into bm_student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="topicId != null">
+        topic_id,
+      </if>
+      <if test="teacherGroupId != null">
+        teacher_group_id,
+      </if>
+      <if test="studentId != null">
+        student_id,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="college != null">
+        college,
+      </if>
+      <if test="major != null">
+        major,
+      </if>
+      <if test="classes != null">
+        classes,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="answerEvaluate != null">
+        answer_evaluate,
+      </if>
+      <if test="answerScore != null">
+        answer_score,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="recordStatus != null">
+        record_status,
+      </if>
+      <if test="commentTeacher != null">
+        comment_teacher,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="topicId != null">
+        #{topicId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherGroupId != null">
+        #{teacherGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null">
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="college != null">
+        #{college,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="classes != null">
+        #{classes,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="answerEvaluate != null">
+        #{answerEvaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="answerScore != null">
+        #{answerScore,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordStatus != null">
+        #{recordStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="commentTeacher != null">
+        #{commentTeacher,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmu.bibasedmanage.pojo.BmStudent">
+    update bm_student
+    <set>
+      <if test="topicId != null">
+        topic_id = #{topicId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherGroupId != null">
+        teacher_group_id = #{teacherGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null">
+        student_id = #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="college != null">
+        college = #{college,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="classes != null">
+        classes = #{classes,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="answerEvaluate != null">
+        answer_evaluate = #{answerEvaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="answerScore != null">
+        answer_score = #{answerScore,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordStatus != null">
+        record_status = #{recordStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="commentTeacher != null">
+        comment_teacher = #{commentTeacher,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmu.bibasedmanage.pojo.BmStudent">
+    update bm_student
+    set topic_id = #{topicId,jdbcType=VARCHAR},
+      teacher_group_id = #{teacherGroupId,jdbcType=VARCHAR},
+      student_id = #{studentId,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=INTEGER},
+      college = #{college,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      classes = #{classes,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      answer_evaluate = #{answerEvaluate,jdbcType=VARCHAR},
+      answer_score = #{answerScore,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      record_status = #{recordStatus,jdbcType=VARCHAR},
+      comment_teacher = #{commentTeacher,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from bm_student
+    order by create_time
+  </select>
+</mapper>
