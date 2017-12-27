@@ -61,4 +61,40 @@
         <property name="maxInMemorySize" value="40960" />
     </bean>
 
+
+
+    <!-- 时间过滤 -->
+    <mvc:annotation-driven conversion-service="conversionService">
+        <mvc:message-converters register-defaults="true">
+            <!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <bean class="com.jmu.bibasedmanage.mvc.DateConverter"></bean>
+        </property>
+    </bean>
+
+    <!-- 定义无需Controller的url<->view直接映射 -->
+    <mvc:view-controller path="/" view-name="redirect:/" />
+
+    <!-- 将Controller抛出的异常转到特定View, 保持SiteMesh的装饰效果 -->
+    <bean id="handlerExceptionResolver"
+          class="com.jmu.bibasedmanage.mvc.CommonHandlerExceptionResolver">
+        <property name="defaultErrorView" value="/error/500.html" />
+        <property name="exceptionMappings">
+            <props>
+                <prop key="com.jmu.bibasedmanage.exception.BusinessException">/error/500.html</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- validator验证 -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass"  value="org.hibernate.validator.HibernateValidator"/>
+    </bean>
 </beans>

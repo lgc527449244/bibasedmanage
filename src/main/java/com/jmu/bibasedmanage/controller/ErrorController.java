@@ -10,5 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/error")
 public class ErrorController {
+    @RequestMapping(produces = "text/html")
+    public String errorPage() {
+        return "error/error.html";
+    }
 
+    @RequestMapping(value = "/404", produces = "text/html")
+    public String page404() {
+        return "error/404.html";
+    }
 }

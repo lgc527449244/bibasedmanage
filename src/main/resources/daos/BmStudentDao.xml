@@ -13,6 +13,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="sex" jdbcType="VARCHAR" property="sex" />
     <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     <result column="answer_evaluate" jdbcType="VARCHAR" property="answerEvaluate" />
     <result column="answer_score" jdbcType="INTEGER" property="answerScore" />
     <result column="status" jdbcType="VARCHAR" property="status" />
@@ -23,8 +24,8 @@
   </resultMap>
   <sql id="Base_Column_List">
     id, topic_id, teacher_group_id, student_id, grade, college, major, classes, name, 
-    sex, email, answer_evaluate, answer_score, status, create_time, update_time, record_status, 
-    comment_teacher
+    sex, email, mobile, answer_evaluate, answer_score, status, create_time, update_time, 
+    record_status, comment_teacher
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -40,17 +41,17 @@
     insert into bm_student (id, topic_id, teacher_group_id, 
       student_id, grade, college, 
       major, classes, name, 
-      sex, email, answer_evaluate, 
-      answer_score, status, create_time, 
-      update_time, record_status, comment_teacher
-      )
+      sex, email, mobile, 
+      answer_evaluate, answer_score, status, 
+      create_time, update_time, record_status, 
+      comment_teacher)
     values (#{id,jdbcType=VARCHAR}, #{topicId,jdbcType=VARCHAR}, #{teacherGroupId,jdbcType=VARCHAR}, 
       #{studentId,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}, #{college,jdbcType=VARCHAR}, 
       #{major,jdbcType=VARCHAR}, #{classes,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{answerEvaluate,jdbcType=VARCHAR}, 
-      #{answerScore,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{recordStatus,jdbcType=VARCHAR}, #{commentTeacher,jdbcType=VARCHAR}
-      )
+      #{sex,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{answerEvaluate,jdbcType=VARCHAR}, #{answerScore,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{recordStatus,jdbcType=VARCHAR}, 
+      #{commentTeacher,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jmu.bibasedmanage.pojo.BmStudent">
     insert into bm_student
@@ -87,6 +88,9 @@
       </if>
       <if test="email != null">
         email,
+      </if>
+      <if test="mobile != null">
+        mobile,
       </if>
       <if test="answerEvaluate != null">
         answer_evaluate,
@@ -144,6 +148,9 @@
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
       <if test="answerEvaluate != null">
         #{answerEvaluate,jdbcType=VARCHAR},
       </if>
@@ -200,6 +207,9 @@
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
       <if test="answerEvaluate != null">
         answer_evaluate = #{answerEvaluate,jdbcType=VARCHAR},
       </if>
@@ -236,6 +246,7 @@
       name = #{name,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
       answer_evaluate = #{answerEvaluate,jdbcType=VARCHAR},
       answer_score = #{answerScore,jdbcType=INTEGER},
       status = #{status,jdbcType=VARCHAR},
@@ -247,7 +258,7 @@
   </update>
   <select id="selectByPage" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List"/>
+    <include refid="Base_Column_List" />
     from bm_student
     order by create_time
   </select>

@@ -4,7 +4,6 @@ import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.jmu.bibasedmanage.consts.CommonConst;
 import com.jmu.bibasedmanage.dao.BmStudentDao;
-import com.jmu.bibasedmanage.enums.RecordStatus;
 import com.jmu.bibasedmanage.pojo.BmStudent;
 import com.jmu.bibasedmanage.service.StudentService;
 import com.jmu.bibasedmanage.util.UUIDUtils;
@@ -13,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.List;
 
@@ -37,11 +37,13 @@ public class StudentServiceImpl implements StudentService{
     public String add(BmStudent bmStudent) {
         String id = UUIDUtils.generator();
         bmStudent.setId(id);
+        bmStudent.setCreateTime(new Date());
         bmStudentDao.insert(bmStudent);
         return id;
     }
 
     public void update(BmStudent bmStudent) {
+        bmStudent.setUpdateTime(new Date());
         bmStudentDao.updateByPrimaryKeySelective(bmStudent);
     }
 

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jmu.bibasedmanage.dao.BmOperationDao">
+  <resultMap id="BaseResultMap" type="com.jmu.bibasedmanage.pojo.BmOperation">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="operation_group_id" jdbcType="VARCHAR" property="operationGroupId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="enter_url" jdbcType="VARCHAR" property="enterUrl" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="ln" jdbcType="INTEGER" property="ln" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, operation_group_id, name, enter_url, status, ln, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bm_operation
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bm_operation
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jmu.bibasedmanage.pojo.BmOperation">
+    insert into bm_operation (id, operation_group_id, name, 
+      enter_url, status, ln, 
+      remark)
+    values (#{id,jdbcType=VARCHAR}, #{operationGroupId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{enterUrl,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{ln,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmu.bibasedmanage.pojo.BmOperation">
+    insert into bm_operation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="operationGroupId != null">
+        operation_group_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="enterUrl != null">
+        enter_url,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="ln != null">
+        ln,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="operationGroupId != null">
+        #{operationGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="enterUrl != null">
+        #{enterUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="ln != null">
+        #{ln,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmu.bibasedmanage.pojo.BmOperation">
+    update bm_operation
+    <set>
+      <if test="operationGroupId != null">
+        operation_group_id = #{operationGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="enterUrl != null">
+        enter_url = #{enterUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="ln != null">
+        ln = #{ln,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmu.bibasedmanage.pojo.BmOperation">
+    update bm_operation
+    set operation_group_id = #{operationGroupId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      enter_url = #{enterUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      ln = #{ln,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByRoleId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select o.*
+    from bm_role_operation ro left join bm_operation o on ro.operation_id = o.id
+    where ro.role_id = #{0} and o.status = "ENABLE"
+  </select>
+</mapper>

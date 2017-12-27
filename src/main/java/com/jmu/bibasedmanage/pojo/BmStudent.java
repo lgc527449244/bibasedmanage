@@ -25,6 +25,8 @@ public class BmStudent {
 
     private String email;
 
+    private String mobile;
+
     private String answerEvaluate;
 
     private Integer answerScore;
@@ -46,6 +48,7 @@ public class BmStudent {
     public void setId(String id) {
         this.id = id == null ? null : id.trim();
     }
+
 
     public String getTopicId() {
         return topicId;
@@ -125,6 +128,14 @@ public class BmStudent {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile == null ? null : mobile.trim();
     }
 
     public String getAnswerEvaluate() {

@@ -51,11 +51,11 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!-- 指定数据库表 -->
-        <!--<table  tableName="bm_student" domainObjectName="BmStudent" mapperName="BmStudentDao" enableCountByExample="false"-->
-                <!--enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
-                <!--selectByExampleQueryId="false"  />-->
-        <table  tableName="test" domainObjectName="BmStudent" mapperName="BmStudentDao" enableCountByExample="false"
+        <table  tableName="bm_operation" domainObjectName="BmOperation" mapperName="BmOperationDao" enableCountByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                 selectByExampleQueryId="false"  />
+        <!--<table  tableName="test" domainObjectName="BmStudent" mapperName="BmStudentDao" enableCountByExample="false"-->
+                <!--enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+                <!--selectByExampleQueryId="false"  />-->
     </context>
 </generatorConfiguration>

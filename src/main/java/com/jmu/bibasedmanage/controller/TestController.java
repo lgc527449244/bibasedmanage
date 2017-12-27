@@ -1,5 +1,6 @@
 package com.jmu.bibasedmanage.controller;
 
+import com.jmu.bibasedmanage.exception.BusinessException;
 import com.jmu.bibasedmanage.util.ResponseUtil;
 import com.jmu.bibasedmanage.vo.JsonResponse;
 import org.springframework.stereotype.Controller;
@@ -29,5 +30,9 @@ public class TestController {
         map.put("ss","111");
         map.put("te","22");
         return ResponseUtil.successMap(key1, map);
+    }
+    @RequestMapping("/exception")
+    public void exception(){
+        throw new BusinessException("测试");
     }
 }
