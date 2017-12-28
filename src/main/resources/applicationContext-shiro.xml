@@ -35,13 +35,13 @@
         <property name="filterChainDefinitions">
             <value>
                 <!-- 配置登出: 使用 logout 过滤器 -->
-                /shiro-logout = logout
+                /logout = logout
                 /static/** = anon
                 /login.html = anon
                 /login = anon
-                /user.jsp = roles[user]
-                /admin.jsp = perms[document:read]
-                /** = authc, roles[admin]
+                /user.jsp = perms[student:*]
+                /student/** = roles[admin]
+                <!--/** = authc, roles[admin]-->
             </value>
         </property>
     </bean>
