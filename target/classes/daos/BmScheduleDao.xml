@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jmu.bibasedmanage.dao.BmScheduleDao">
+  <resultMap id="BaseResultMap" type="com.jmu.bibasedmanage.pojo.BmSchedule">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="student_id" jdbcType="VARCHAR" property="studentId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="progress_quality" jdbcType="VARCHAR" property="progressQuality" />
+    <result column="inspection_situation" jdbcType="VARCHAR" property="inspectionSituation" />
+    <result column="topic_name" jdbcType="VARCHAR" property="topicName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="record_status" jdbcType="VARCHAR" property="recordStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, student_id, content, progress_quality, inspection_situation, topic_name, create_time, 
+    update_time, record_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bm_schedule
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bm_schedule
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jmu.bibasedmanage.pojo.BmSchedule">
+    insert into bm_schedule (id, student_id, content, 
+      progress_quality, inspection_situation, topic_name, 
+      create_time, update_time, record_status
+      )
+    values (#{id,jdbcType=VARCHAR}, #{studentId,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{progressQuality,jdbcType=VARCHAR}, #{inspectionSituation,jdbcType=VARCHAR}, #{topicName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{recordStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmu.bibasedmanage.pojo.BmSchedule">
+    insert into bm_schedule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="studentId != null">
+        student_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="progressQuality != null">
+        progress_quality,
+      </if>
+      <if test="inspectionSituation != null">
+        inspection_situation,
+      </if>
+      <if test="topicName != null">
+        topic_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="recordStatus != null">
+        record_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null">
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="progressQuality != null">
+        #{progressQuality,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectionSituation != null">
+        #{inspectionSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="topicName != null">
+        #{topicName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordStatus != null">
+        #{recordStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmu.bibasedmanage.pojo.BmSchedule">
+    update bm_schedule
+    <set>
+      <if test="studentId != null">
+        student_id = #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="progressQuality != null">
+        progress_quality = #{progressQuality,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectionSituation != null">
+        inspection_situation = #{inspectionSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="topicName != null">
+        topic_name = #{topicName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordStatus != null">
+        record_status = #{recordStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmu.bibasedmanage.pojo.BmSchedule">
+    update bm_schedule
+    set student_id = #{studentId,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      progress_quality = #{progressQuality,jdbcType=VARCHAR},
+      inspection_situation = #{inspectionSituation,jdbcType=VARCHAR},
+      topic_name = #{topicName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      record_status = #{recordStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

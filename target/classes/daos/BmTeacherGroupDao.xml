@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jmu.bibasedmanage.dao.BmTeacherGroupDao">
+  <resultMap id="BaseResultMap" type="com.jmu.bibasedmanage.pojo.BmTeacherGroup">
+    <id column="tgid" jdbcType="VARCHAR" property="id" />
+    <result column="tgname" jdbcType="VARCHAR" property="name" />
+    <result column="classroom" jdbcType="VARCHAR" property="classroom" />
+    <result column="begin_time" jdbcType="TIMESTAMP" property="beginTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="topic_id" jdbcType="VARCHAR" property="topicId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="record_status" jdbcType="VARCHAR" property="recordStatus" />
+    <collection property="bmTeachers" ofType="com.jmu.bibasedmanage.pojo.BmTeacher" resultMap="com.jmu.bibasedmanage.dao.BmTeacherDao.BaseResultMap" >
+    </collection>
+    <collection property="bmStudents" ofType="com.jmu.bibasedmanage.pojo.BmStudent">
+            <!-- id:唯一标识
+        
+                 property：要将订单明细的唯一标识映射到com.mybatis.entity.OrderDetail的那个属性
+             -->
+           <id column="sid" jdbcType="VARCHAR" property="id" />
+           <result column="sname" jdbcType="VARCHAR" property="name" />
+           <association property="bmTopic"  javaType="com.jmu.bibasedmanage.pojo.BmTopic" resultMap="topicMap"/>
+       </collection>
+  </resultMap>
+   <resultMap type="com.jmu.bibasedmanage.pojo.BmTopic" id="topicMap">
+        <id column="pid" jdbcType="VARCHAR" property="id" />
+        <result column="pname" jdbcType="VARCHAR" property="name" />
+        </resultMap>  
+  <sql id="Base_Column_List">
+    id, name, classroom, begin_time, end_time, topic_id, create_time, update_time, record_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bm_teacher_group
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="searchStudent" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select s.name as sname,
+           p.name as pname,
+           tg.name as tgname
+    from bm_teacher_group tg 
+    inner join bm_student s on tg.id=s.teacher_group_id 
+    inner join bm_topic p on p.id=s.topic_id
+    inner join bm_teacher t on t.teacher_group_id =tg.id
+    where t.id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByTeacherid" parameterType="java.lang.String" resultMap="BaseResultMap"> 
+    select 
+     tg.id,tg.name,classroom
+    from bm_teacher_group tg inner join bm_teacher t on tg.id=t.teacher_group_id
+    where t.id = #{id,jdbcType=VARCHAR}
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bm_teacher_group
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jmu.bibasedmanage.pojo.BmTeacherGroup">
+    insert into bm_teacher_group (id, name, classroom, 
+      begin_time, end_time, topic_id, 
+      create_time, update_time, record_status
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{classroom,jdbcType=VARCHAR}, 
+      #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{topicId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{recordStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmu.bibasedmanage.pojo.BmTeacherGroup">
+    insert into bm_teacher_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="classroom != null">
+        classroom,
+      </if>
+      <if test="beginTime != null">
+        begin_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="topicId != null">
+        topic_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="recordStatus != null">
+        record_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="classroom != null">
+        #{classroom,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="topicId != null">
+        #{topicId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordStatus != null">
+        #{recordStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmu.bibasedmanage.pojo.BmTeacherGroup">
+    update bm_teacher_group
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="classroom != null">
+        classroom = #{classroom,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null">
+        begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="topicId != null">
+        topic_id = #{topicId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordStatus != null">
+        record_status = #{recordStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmu.bibasedmanage.pojo.BmTeacherGroup">
+    update bm_teacher_group
+    set name = #{name,jdbcType=VARCHAR},
+      classroom = #{classroom,jdbcType=VARCHAR},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      topic_id = #{topicId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      record_status = #{recordStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

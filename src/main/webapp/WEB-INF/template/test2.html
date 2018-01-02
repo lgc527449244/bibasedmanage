@@ -7,15 +7,17 @@
 </head>
 <body>
   <table >
-            <tr >
+    <tr >
                 <td >答辩组组名</td>
                 <td >答辩教室</td>
             </tr>
-              <tr >
-                <td >$teacherGroup.name</td>
-                <td >$teacherGroup.classroom</td>
+         #foreach($bmStudent in $teacherGroup.bmStudents)
+            <tr >
+                <td >$bmStudent.name</td>
+                <td >$bmStudent.bmTopic.name</td>
             </tr>
-   
+        #end
+
     </table>
 
 </body>

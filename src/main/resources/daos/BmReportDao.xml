@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jmu.bibasedmanage.dao.BmReportDao">
+  <resultMap id="BaseResultMap" type="com.jmu.bibasedmanage.pojo.BmReport">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="teacher_group_id" jdbcType="VARCHAR" property="teacherGroupId" />
+    <result column="student_id" jdbcType="VARCHAR" property="studentId" />
+    <result column="topic_id" jdbcType="VARCHAR" property="topicId" />
+    <result column="file_path" jdbcType="VARCHAR" property="filePath" />
+    <result column="review" jdbcType="VARCHAR" property="review" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="back_file_path" jdbcType="VARCHAR" property="backFilePath" />
+    <result column="report_type" jdbcType="VARCHAR" property="reportType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="record_status" jdbcType="VARCHAR" property="recordStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, teacher_group_id, student_id, topic_id, file_path, review, score, back_file_path, 
+    report_type, create_time, update_time, record_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bm_report
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bm_report
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jmu.bibasedmanage.pojo.BmReport">
+    insert into bm_report (id, teacher_group_id, student_id, 
+      topic_id, file_path, review, 
+      score, back_file_path, report_type, 
+      create_time, update_time, record_status
+      )
+    values (#{id,jdbcType=VARCHAR}, #{teacherGroupId,jdbcType=VARCHAR}, #{studentId,jdbcType=VARCHAR}, 
+      #{topicId,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, #{review,jdbcType=VARCHAR}, 
+      #{score,jdbcType=INTEGER}, #{backFilePath,jdbcType=VARCHAR}, #{reportType,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{recordStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmu.bibasedmanage.pojo.BmReport">
+    insert into bm_report
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="teacherGroupId != null">
+        teacher_group_id,
+      </if>
+      <if test="studentId != null">
+        student_id,
+      </if>
+      <if test="topicId != null">
+        topic_id,
+      </if>
+      <if test="filePath != null">
+        file_path,
+      </if>
+      <if test="review != null">
+        review,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="backFilePath != null">
+        back_file_path,
+      </if>
+      <if test="reportType != null">
+        report_type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="recordStatus != null">
+        record_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherGroupId != null">
+        #{teacherGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null">
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="topicId != null">
+        #{topicId,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="review != null">
+        #{review,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="backFilePath != null">
+        #{backFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="reportType != null">
+        #{reportType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordStatus != null">
+        #{recordStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmu.bibasedmanage.pojo.BmReport">
+    update bm_report
+    <set>
+      <if test="teacherGroupId != null">
+        teacher_group_id = #{teacherGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null">
+        student_id = #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="topicId != null">
+        topic_id = #{topicId,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        file_path = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="review != null">
+        review = #{review,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="backFilePath != null">
+        back_file_path = #{backFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="reportType != null">
+        report_type = #{reportType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordStatus != null">
+        record_status = #{recordStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmu.bibasedmanage.pojo.BmReport">
+    update bm_report
+    set teacher_group_id = #{teacherGroupId,jdbcType=VARCHAR},
+      student_id = #{studentId,jdbcType=VARCHAR},
+      topic_id = #{topicId,jdbcType=VARCHAR},
+      file_path = #{filePath,jdbcType=VARCHAR},
+      review = #{review,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      back_file_path = #{backFilePath,jdbcType=VARCHAR},
+      report_type = #{reportType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      record_status = #{recordStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

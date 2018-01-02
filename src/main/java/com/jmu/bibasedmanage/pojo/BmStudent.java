@@ -40,8 +40,18 @@ public class BmStudent {
     private String recordStatus;
 
     private String commentTeacher;
+ 
+    private BmTopic bmTopic;
+    
+    public BmTopic getBmTopic() {
+		return bmTopic;
+	}
 
-    public String getId() {
+	public void setBmTopic(BmTopic bmTopic) {
+		this.bmTopic = bmTopic;
+	}
+
+	public String getId() {
         return id;
     }
 
